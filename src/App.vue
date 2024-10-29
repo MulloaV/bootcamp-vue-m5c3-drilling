@@ -1,28 +1,31 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app" class="container">
+    <GameList :games="games" @delete-game="removeGame" />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Vue from 'vue';
+import GameList from './components/GameList.vue';
 
-export default {
+export default Vue.extend ({
   name: 'App',
   components: {
-    HelloWorld
+    GameList
+  },
+  data() {
+    return {
+      games: ["Arena of valor", "Pokemon Unite", "Donkey Kong", "Heroes of the storm", "Valorant"]
+    };
+  },
+  methods: {
+    removeGame(index) {
+      this.games.splice(index, 1);
+    }
   }
-}
+});
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>
